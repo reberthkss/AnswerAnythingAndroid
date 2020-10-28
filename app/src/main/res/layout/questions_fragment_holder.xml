@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="currentQuestion"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/questions_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@{currentQuestion}"
+                android:textAlignment="center"
+                android:textSize="48sp"
+                tools:text="Pergunta 1" />
+
+            <include
+                android:id="@+id/rec_view"
+                layout="@layout/questions_rec_view" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/finish_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="gone"
+            >
+            <ImageView
+                android:id="@+id/animated_done_drawable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:minWidth="100dp"
+                android:minHeight="100dp"
+                android:src="@drawable/animated_done_vector_drawable"
+                tools:src="@drawable/animated_done_vector_drawable" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</layout>
