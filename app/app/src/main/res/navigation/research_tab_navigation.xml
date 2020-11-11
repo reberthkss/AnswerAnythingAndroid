@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/research_tab_navigation"
+    app:startDestination="@id/researchListFragment">
+    <fragment
+        android:id="@+id/researchListFragment"
+        android:name="com.answer.anything.fragments.research.ResearchListFragment"
+        android:label="ResearchListFragment"
+        tools:layout="@layout/research_list_fragment"
+        >
+        <action
+            android:id="@+id/action_researchListFragment_to_registerNewAnswer"
+            app:destination="@id/registerNewAnswer"
+            app:enterAnim="@anim/slide_in_top" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerNewAnswer"
+        android:name="com.answer.anything.fragments.research.RegisterNewAnswer"
+        android:label="RegisterNewAnswer"
+        tools:layout="@layout/register_new_answer"
+        />
+</navigation>

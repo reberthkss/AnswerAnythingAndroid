@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/progress_tab_navigation"
+    app:startDestination="@id/questionsFragment3">
+    <fragment
+        android:id="@+id/questionsFragment3"
+        android:name="com.answer.anything.fragments.questions.QuestionsFragment"
+        android:label="QuestionsFragment"
+        tools:layout="@layout/questions_fragment"/>
+</navigation>
