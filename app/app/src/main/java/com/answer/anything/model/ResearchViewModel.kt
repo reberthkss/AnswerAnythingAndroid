@@ -24,6 +24,7 @@ class ResearchViewModel : ViewModel() {
     fun config() {
         unsubscribeFirestore = researchRepository.setSnapShotListener {
             allResearchs.value = it
+            filterOpenResearchs()
         }
         viewModelScope.launch {
             allResearchs.value = researchRepository.read(auth.currentUser!!.uid);

@@ -2,7 +2,7 @@ package com.answer.anything.repository
 
 import android.util.Log
 import com.answer.anything.data.Research
-import com.answer.anything.firestore
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.Dispatchers
@@ -30,6 +30,7 @@ class ResearchRepository() {
     companion object {
         private val TAG = "ResearchRepository"
     }
+    private val firestore = FirebaseFirestore.getInstance()
     private val researchCollection = firestore.collection("researchs")
 
 

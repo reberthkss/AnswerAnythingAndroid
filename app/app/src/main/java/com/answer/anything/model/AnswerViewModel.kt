@@ -49,11 +49,11 @@ class AnswerViewModel: ViewModel() {
 
     }
 
-    fun registerSelectedOption(questionId: String, selectedOption: Int) {
+    fun registerSelectedOption(questionId: String, selectedOption: Int, prevSelectedOption: Int?) {
         loading.value = true
         viewModelScope.launch {
             /*TODO - Check if that question is already selected (if already is in array)*/
-            answerResearchData.value?.answeredQuestions?.add(AnsweredQuestion(questionId, selectedOption))
+            answerResearchData.value?.answeredQuestions?.add(AnsweredQuestion(questionId, selectedOption, prevSelectedOption))
         }
         loading.value = false
     }
@@ -72,9 +72,10 @@ class AnswerViewModel: ViewModel() {
                             get() = id.value
                         override val answeredQuestionId: String?
                             get() = it.questionId
-                                override val selectedOption: Int
+                        override val selectedOption: Int
                             get() = it.selectedOption
-
+                        override val prevSelectedOption: Int?
+                            get() = it.prevSelectedOption
                     })
                 }
             

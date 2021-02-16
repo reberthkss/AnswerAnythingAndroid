@@ -2,11 +2,8 @@ package com.answer.anything.repository
 
 import android.util.Log
 import com.answer.anything.data.AnswerData
-import com.answer.anything.firestore
-import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -18,6 +15,7 @@ interface SaveAnsweredQuestionPayload {
     val answerResearchId: String?
     val answeredQuestionId: String?
     val selectedOption: Int
+    val prevSelectedOption: Int?
 }
 
 interface EndAnswerResearchPayload {
@@ -26,7 +24,8 @@ interface EndAnswerResearchPayload {
 }
 class AnswerResearch {
     private val TAG = "[AnswerResearch]"
-
+    private val firestore = FirebaseFirestore
+        .getInstance()
     suspend fun startQuestionnaire(researchId: String, answerData: AnswerData): String? = withContext(Dispatchers.IO) {
         try {
             (firestore
@@ -52,8 +51,9 @@ class AnswerResearch {
                     .document(payload.researchId!!)
                     .collection(Collections.ANSWERED_QUESTIONS.value)
                     .document(payload.answerResearchId!!)
-                    .update("answeredQuestion", FieldValue.arrayUnion(
-                        hashMapOf<String, Any>(
+                    .update("answeredQuestions", FieldValue.arrayUnion(
+                        hashMapOf(
+                            "prevSelectedOption" to payload.prevSelectedOption,
                             "questionId" to payload.answeredQuestionId!!,
                             "selectedOption" to payload.selectedOption
                         )

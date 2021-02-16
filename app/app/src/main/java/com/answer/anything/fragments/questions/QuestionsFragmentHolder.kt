@@ -48,8 +48,9 @@ class QuestionsFragmentHolder(val question: ResearchQuestion?, val isTheLastQues
                 if (selectedOption != null) {
                     binding.recView.questionsRecView.getChildAt(selectedOption!!).optionButton.setStrokeColorResource(R.color.grey)
                 }
+                prevSelectedOption = selectedOption
                 selectedOption = option
-                answerResearchViewModel.registerSelectedOption(id, option)
+                answerResearchViewModel.registerSelectedOption(id, selectedOption!!, prevSelectedOption)
                 if (isTheLastQuestion) {
                     binding.questionsContent.visibility = GONE
                     binding.finishContainer.visibility = VISIBLE
