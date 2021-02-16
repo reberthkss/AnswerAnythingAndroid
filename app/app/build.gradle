@@ -7,10 +7,10 @@ apply plugin: 'com.google.gms.google-services'
 android {
     signingConfigs {
         debug {
-            storeFile file('D:\\kalis-store.jks')
-            storePassword 'reth0153a'
-            keyAlias 'reberth'
-            keyPassword 'reth0153a'
+            storeFile file('I:\\kalis-store.jks')
+            storePassword 'Reth0153a!a'
+            keyAlias 'answer-anything-android'
+            keyPassword 'Reth0153a!a'
         }
     }
     compileSdkVersion 30
