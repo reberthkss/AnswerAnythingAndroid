@@ -16,12 +16,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 
 
-lateinit var firestore: FirebaseFirestore
 class MainActivity : AppCompatActivity() {
     companion object {
         val TAG = "MainActivity"
     }
-
+    lateinit var firestore: FirebaseFirestore
     private lateinit var binding: ActivityMainBinding
     private val researchViewModel: ResearchViewModel by viewModels()
     private val googleAuthViewModel: AuthenticationViewModel by viewModels()
