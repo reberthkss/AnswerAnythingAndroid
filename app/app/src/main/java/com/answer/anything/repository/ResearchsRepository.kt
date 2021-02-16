@@ -2,13 +2,10 @@ package com.answer.anything.repository
 
 import android.util.Log
 import com.answer.anything.data.Research
-import com.google.firebase.FirebaseApp
-import com.google.firebase.firestore.FirebaseFirestore
+import com.answer.anything.firestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.QuerySnapshot
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
@@ -33,7 +30,8 @@ class ResearchRepository() {
     companion object {
         private val TAG = "ResearchRepository"
     }
-    private val researchCollection = FirebaseFirestore.getInstance().collection("researchs");
+    private val researchCollection = firestore.collection("researchs")
+
 
     suspend fun read(uid: String) = withContext(Dispatchers.IO) {
         val response: QuerySnapshot = researchCollection.get().await();

@@ -19,7 +19,7 @@ interface HandleResultListener {
 }
 
 class GoogleAuthenticationManager(val activity: AppCompatActivity) {
-    public companion object {
+    companion object {
         val RC_SIGN_IN = 9001
     }
     private lateinit var auth: FirebaseAuth

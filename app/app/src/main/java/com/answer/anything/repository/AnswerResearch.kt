@@ -2,6 +2,7 @@ package com.answer.anything.repository
 
 import android.util.Log
 import com.answer.anything.data.AnswerData
+import com.answer.anything.firestore
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -24,7 +25,6 @@ interface EndAnswerResearchPayload {
     val answeredResearchId: String?
 }
 class AnswerResearch {
-    private val firestore = FirebaseFirestore.getInstance();
     private val TAG = "[AnswerResearch]"
 
     suspend fun startQuestionnaire(researchId: String, answerData: AnswerData): String? = withContext(Dispatchers.IO) {

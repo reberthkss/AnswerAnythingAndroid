@@ -9,17 +9,19 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.answer.anything.data.GoogleAuthStatus
-import com.answer.anything.data.Research
-import com.answer.anything.data.ResearchStatus
 import com.answer.anything.databinding.ActivityMainBinding
 import com.answer.anything.model.*
-import com.answer.anything.utils.BottomSheetDialog
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreSettings
 
+
+lateinit var firestore: FirebaseFirestore
 class MainActivity : AppCompatActivity() {
     companion object {
         val TAG = "MainActivity"
     }
+
     private lateinit var binding: ActivityMainBinding
     private val researchViewModel: ResearchViewModel by viewModels()
     private val googleAuthViewModel: AuthenticationViewModel by viewModels()
@@ -32,7 +34,15 @@ class MainActivity : AppCompatActivity() {
         setBottomBar()
         googleAuthViewModel.configAuth(this)
 
+        if (BuildConfig.DEBUG) {
+            firestore = FirebaseFirestore.getInstance()
+            firestore.useEmulator("10.0.2.2", 8080)
 
+            val firestoreSettings = FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(false)
+                .build()
+            firestore.firestoreSettings = firestoreSettings
+        }
         answerResearchViewModel.getStatusOfAnswer().observe(this, Observer {
             when (it) {
                 AnswerViewModelStatus.GETTING_USER_DATA -> binding.bottomToolBar.selectedItemId = R.id.researchs
