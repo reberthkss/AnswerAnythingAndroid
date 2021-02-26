@@ -47,7 +47,7 @@
 
                     <LinearLayout
                         android:id="@+id/user_form_layout"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
@@ -88,7 +88,6 @@
                         android:id="@+id/qr_code_layout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:backgroundTint="@android:color/holo_red_dark"
                         android:orientation="vertical"
                         android:gravity="center_horizontal"
                         android:visibility="gone"
