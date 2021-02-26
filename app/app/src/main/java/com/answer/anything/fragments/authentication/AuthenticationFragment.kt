@@ -6,16 +6,21 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.answer.anything.data.AuthStatus
 import com.answer.anything.databinding.AuthenticationFragmentBinding
 import com.answer.anything.manager.FacebookAuthenticationManager.Companion.EMAIL
+import com.answer.anything.manager.FacebookAuthenticationManager.Companion.PROFILE
 import com.answer.anything.manager.GoogleAuthenticationManager
 import com.answer.anything.manager.HandleResultListener
 import com.answer.anything.model.AuthenticationViewModel
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
+import com.facebook.Profile
+import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -23,6 +28,7 @@ import com.google.android.gms.tasks.Task
 
 
 class AuthenticationFragment : Fragment() {
+    private val TAG = "AuthenticationFragment"
     private lateinit var binding: AuthenticationFragmentBinding
     private val authenticationViewModel: AuthenticationViewModel by activityViewModels()
     private  lateinit var callbackManager: CallbackManager
@@ -38,19 +44,20 @@ class AuthenticationFragment : Fragment() {
                 startActivityForResult(signInIntent, GoogleAuthenticationManager.RC_SIGN_IN)
             }
         }
-        binding.facebookLoginButton.setPermissions(listOf(EMAIL))
         callbackManager = authenticationViewModel.getCallbackManager()
+        binding.facebookLoginButton.fragment = this
+        binding.facebookLoginButton.setPermissions(listOf(EMAIL, PROFILE))
         binding.facebookLoginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult?> {
             override fun onSuccess(loginResult: LoginResult?) {
-                // App code
+                authenticationViewModel.handleFacebookAccessToken(loginResult!!.accessToken, activity as AppCompatActivity)
             }
 
             override fun onCancel() {
-                // App code
+                Log.d(TAG, "User canceled")
             }
 
             override fun onError(exception: FacebookException) {
-                // App code
+                Log.d(TAG, "Error => ${exception.message}")
             }
         })
         return binding.root

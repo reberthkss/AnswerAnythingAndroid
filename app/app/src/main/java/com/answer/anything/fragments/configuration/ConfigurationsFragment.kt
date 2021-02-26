@@ -11,15 +11,15 @@ import com.answer.anything.model.AuthenticationViewModel
 
 class ConfigurationsFragment : Fragment() {
     private lateinit var binding: ConfigurationsFragmentBinding
-    private val googleAuthenticationViewModel: AuthenticationViewModel by activityViewModels()
+    private val authenticationViewModel: AuthenticationViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = ConfigurationsFragmentBinding.inflate(inflater, container, false);
         binding.signOutButton.setOnClickListener {
-            googleAuthenticationViewModel.signOut()
+            authenticationViewModel.signOut()
         }
         return binding.root;
     }

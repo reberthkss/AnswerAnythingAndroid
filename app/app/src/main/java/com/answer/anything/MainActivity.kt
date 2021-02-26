@@ -8,7 +8,7 @@ import android.view.View.VISIBLE
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import com.answer.anything.data.GoogleAuthStatus
+import com.answer.anything.data.AuthStatus
 import com.answer.anything.databinding.ActivityMainBinding
 import com.answer.anything.model.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         googleAuthViewModel.getAuthStatus().observe(this, Observer {
-            if (it == GoogleAuthStatus.AUTH) {
+            if (it == AuthStatus.AUTH) {
                 binding.bottomToolBar.selectedItemId = R.id.researchs;
                 researchViewModel.config();
             } else {
