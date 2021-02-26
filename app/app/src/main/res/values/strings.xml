@@ -1,4 +1,16 @@
 <resources>
-    <string name="app_name">Answer Anything</string>
+    <string name="app_name" translatable="false">Answer Anything</string>
     <string name="google_oauth_id">22067167918-baqce17n5fstnrtc252hlan4k9outq3g.apps.googleusercontent.com</string>
+    <string name="show_qr_code_helper_text" translatable="false">Show QR Code</string>
+    <string name="hide_qr_code_helper_text">Hide QR Code</string>
+    <string name="dashboard_toolbar_label">Dashboard</string>
+    <string name="researchs_toolbar_label">Researchs</string>
+    <string name="dones_researchs_toolbar_label">Dones</string>
+    <string name="config_toolbar_label">Configurations</string>
+    <string name="sign_in_text">Sign in</string>
+    <string name="sign_out_text">Sign out</string>
+    <string name="username_field_placeholder">Tipe the username</string>
+    <string name="input_name_placeholder">Name</string>
+    <string name="input_email_placeholder">E-mail</string>
+    <string name="none_research_was_found_text">None research was found :(</string>
 </resources>

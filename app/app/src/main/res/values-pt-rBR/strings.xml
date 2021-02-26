@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Answer Anything</string>
+    <string name="show_qr_code_helper_text" translatable="false">Mostrar QR Code</string>
+    <string name="hide_qr_code_helper_text">Esconder QR Code</string>
+    <string name="dashboard_toolbar_label">Dashboard</string>
+    <string name="dones_researchs_toolbar_label">Dones</string>
+    <string name="config_toolbar_label">Configurações</string>
+    <string name="sign_in_text">Sign in</string>
+    <string name="sign_out_text">Sair</string>
+    <string name="username_field_placeholder">Informe a identificação do usuário.</string>
+    <string name="input_name_placeholder">Nome</string>
+    <string name="input_email_placeholder">E-mail</string>
+    <string name="none_research_was_found_text">Nenhuma pesquisa encontrada :(</string>
+    <string name="researchs_toolbar_label">Pesquisas</string>
+</resources>

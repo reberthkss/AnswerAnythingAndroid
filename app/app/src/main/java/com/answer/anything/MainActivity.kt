@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private val researchViewModel: ResearchViewModel by viewModels()
     private val googleAuthViewModel: AuthenticationViewModel by viewModels()
     private val answerResearchViewModel: AnswerViewModel by viewModels()
+    private val qrCodeViewModel: QRCodeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,23 +95,23 @@ class MainActivity : AppCompatActivity() {
                 when (p0.itemId) {
                     R.id.researchs -> {
                         researchViewModel.filterOpenResearchs()
-                        binding.toolbarTitle.text = "Dashboard"
+                        binding.toolbarTitle.text = getString(R.string.dashboard_toolbar_label)
                         updateGraph(R.navigation.research_tab_navigation)
                         return true
                     }
                     R.id.searching -> {
-                        binding.toolbarTitle.text = "Researchs"
+                        binding.toolbarTitle.text = getString(R.string.researchs_toolbar_label)
                         updateGraph(R.navigation.progress_tab_navigation)
                         return true
                     }
                     R.id.finished -> {
                         researchViewModel.filterClosedResearchs()
-                        binding.toolbarTitle.text = "Dones"
+                        binding.toolbarTitle.text = getString(R.string.dones_researchs_toolbar_label)
                         updateGraph(R.navigation.research_tab_navigation)
                         return true
                     }
                     R.id.configurations -> {
-                        binding.toolbarTitle.text = "Configurações"
+                        binding.toolbarTitle.text = getString(R.string.config_toolbar_label)
                         updateGraph(R.navigation.configuration_navigation)
                         return true
                     }

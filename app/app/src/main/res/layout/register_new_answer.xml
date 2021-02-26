@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -26,47 +26,90 @@
                     android:gravity="bottom"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/userDataText"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Informe a identificação do usuário."
-                        android:textAlignment="center"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+                        android:gravity="end"
+                        android:orientation="horizontal">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/name_txt_field_container"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        <Button
+                            android:id="@+id/generate_qr_btn"
+                            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/show_qr_code_helper_text"
+                            android:textColor="@android:color/black"
+                            android:textSize="14sp"
+                            app:backgroundTint="@android:color/white"
+                            app:icon="@drawable/ic_qr_code_2_24px"
+                            app:iconTint="@android:color/black" />
+                    </LinearLayout>
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/name_txt_field"
+                    <LinearLayout
+                        android:id="@+id/user_form_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/userDataText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Nome" />
+                            android:text="@string/username_field_placeholder"
+                            android:textAlignment="center"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/email_txt_field_container"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/email_txt_field"
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/name_txt_field_container"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="E-mail" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                            android:layout_height="wrap_content">
 
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/name_txt_field"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/input_name_placeholder" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/email_txt_field_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/email_txt_field"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/input_email_placeholder" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/qr_code_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@android:color/holo_red_dark"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:visibility="gone"
+                        >
+                        <ImageView
+                            android:id="@+id/qr_code_img_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/floating_btn_layout"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="visible"
+                >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -92,7 +135,8 @@
             android:layout_width="match_parent"
             android:layout_height="500dp"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="visible">
 
             <ProgressBar
                 android:id="@+id/progressBar"

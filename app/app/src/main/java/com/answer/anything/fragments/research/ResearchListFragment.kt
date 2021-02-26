@@ -1,6 +1,7 @@
 package com.answer.anything.fragments.research
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -10,27 +11,27 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.answer.anything.R
 import com.answer.anything.data.AnswerUserData
 import com.answer.anything.data.Research
 import com.answer.anything.databinding.ResearchListFragmentBinding
 import com.answer.anything.model.AnswerViewModel
+import com.answer.anything.model.QRCodeViewModel
 import com.answer.anything.model.ResearchViewModel
-import com.answer.anything.utils.BottomSheetDialog
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.coroutineScope
+import com.answer.anything.utils.RegisterNewAnswerDialog
 
 class ResearchListFragment : Fragment() {
     private lateinit var binding: ResearchListFragmentBinding
     private val answerResearchViewModel: AnswerViewModel by activityViewModels()
     private val researchViewModel: ResearchViewModel by activityViewModels()
+    private val qrCodeViewModel: QRCodeViewModel by activityViewModels()
+    private val TAG = "ResearchListFragment"
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val divider = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
 
         researchViewModel
@@ -45,8 +46,6 @@ class ResearchListFragment : Fragment() {
                 }
             }
         )
-
-
 
         researchViewModel
             .getLoadingStatus()
@@ -69,6 +68,9 @@ class ResearchListFragment : Fragment() {
     private fun setAdapterToRecView(it: List<Research>?) {
         binding.recView.researchRecView.adapter = ResearchAdapter(it ?: listOf()) {researchId: String ->
 //            inProgressResearchViewModel.setResearch(it)
+            if (qrCodeViewModel.setQRCodeBitmap(researchId)) {
+                Log.d(TAG, "Successfully created QR Code bitmap!")
+            }
             showBottomSheetModal {userData: AnswerUserData ->
                 answerResearchViewModel.startQuestionnaire(researchId, userData)
             }
@@ -76,7 +78,7 @@ class ResearchListFragment : Fragment() {
     }
 
     fun showBottomSheetModal(onClickListener: (userData: AnswerUserData) -> Unit) {
-        val bottomSheet = BottomSheetDialog {
+        val bottomSheet = RegisterNewAnswerDialog {
             onClickListener(it)
         }
         bottomSheet.show((activity)!!.supportFragmentManager, "MainActivity")

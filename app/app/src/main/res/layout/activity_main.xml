@@ -24,7 +24,7 @@
                 android:textColor="#000000"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                tools:text="abc" />
+                tools:text="" />
         </androidx.appcompat.widget.Toolbar>
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_host_fragment_container"

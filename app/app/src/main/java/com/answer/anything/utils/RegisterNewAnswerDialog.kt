@@ -9,15 +9,19 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.answer.anything.R
 import com.answer.anything.data.AnswerUserData
 import com.answer.anything.model.AnswerViewModel
+import com.answer.anything.model.QRCodeViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.register_new_answer.view.*
 
-class BottomSheetDialog (val onClick: (userData: AnswerUserData) -> Unit): BottomSheetDialogFragment() {
+class RegisterNewAnswerDialog (val onClick: (userData: AnswerUserData) -> Unit): BottomSheetDialogFragment() {
     private lateinit var binding: View
     private val answerResearchViewModel: AnswerViewModel by activityViewModels()
+    private val qrCodeViewModel: QRCodeViewModel by activityViewModels()
+    private val TAG = "RegisterNewAnswerDialog"
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,12 +38,19 @@ class BottomSheetDialog (val onClick: (userData: AnswerUserData) -> Unit): Botto
                 binding.loading_view.visibility = GONE
             }
         })
+
+        binding.generate_qr_btn.setOnClickListener {
+            binding.user_form_layout.visibility = if (binding.user_form_layout.visibility == VISIBLE) GONE else VISIBLE
+            binding.floating_btn_layout.visibility = if (binding.floating_btn_layout.visibility == VISIBLE) GONE else VISIBLE
+            binding.qr_code_layout.visibility = if (binding.qr_code_layout.visibility == GONE)  VISIBLE else GONE
+            binding.generate_qr_btn.text = if (binding.generate_qr_btn.text == getString(R.string.show_qr_code_helper_text)) getString(R.string.hide_qr_code_helper_text) else getString(R.string.show_qr_code_helper_text)
+        }
+        val bitmap = qrCodeViewModel.getQRCodeBitmap().value
+        binding.qr_code_img_view.setImageBitmap(bitmap)
         return binding.rootView
     }
 
-
     fun configEmailAndNameField() {
-
         binding.start_survey_btn.setOnClickListener {
             val name = binding.name_txt_field.text.toString()
             val email = binding.email_txt_field.text.toString()
