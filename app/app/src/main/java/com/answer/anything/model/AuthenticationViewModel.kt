@@ -5,21 +5,26 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.answer.anything.data.GoogleAuthStatus
+import com.answer.anything.manager.FacebookAuthenticationManager
 import com.answer.anything.manager.GoogleAuthenticationManager
 import com.answer.anything.manager.HandleResultListener
+import com.facebook.CallbackManager
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseUser
 
 class AuthenticationViewModel() : ViewModel() {
-    private val authStatus = MutableLiveData<GoogleAuthStatus>(GoogleAuthStatus.UNAUTH);
+    private val authStatus = MutableLiveData<GoogleAuthStatus>(GoogleAuthStatus.UNAUTH)
     private val authUser = MutableLiveData<FirebaseUser?>(null)
     private lateinit var googleAuthManager: GoogleAuthenticationManager
+    private lateinit var facebookAuthManager: FacebookAuthenticationManager
 
     fun configAuth(activity: AppCompatActivity) {
         googleAuthManager = GoogleAuthenticationManager(activity);
+        facebookAuthManager = FacebookAuthenticationManager()
         googleAuthManager.init()
+        facebookAuthManager.init()
         if (googleAuthManager.isAuthenticated()) {
             authStatus.value = GoogleAuthStatus.AUTH
         } else {
@@ -62,4 +67,6 @@ class AuthenticationViewModel() : ViewModel() {
     fun getAuthenticatedUser(): LiveData<FirebaseUser?> {
         return authUser
     }
+
+    fun getCallbackManager(): CallbackManager = facebookAuthManager.getCallbackManager()
 }
