@@ -12,4 +12,5 @@
     <string name="input_email_placeholder">E-mail</string>
     <string name="none_research_was_found_text">Nenhuma pesquisa encontrada :(</string>
     <string name="sign_in_text">Entrar</string>
+    <string name="search_anywhere_msg">Vá para a rua, entreviste as pessoas utilizando teu celular ou compartilhando o QR Code de sua pesquisa</string>
 </resources>

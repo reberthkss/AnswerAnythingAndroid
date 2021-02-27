@@ -30,11 +30,8 @@ class ResearchViewModel : ViewModel() {
             allResearchs.value = it
             filterOpenResearchs()
         }
-        viewModelScope.launch {
-            allResearchs.value = researchRepository.read(authenticatedUser!!.uid);
-            filterOpenResearchs()
-            isLoading.value = false
-        }
+        isLoading.value = false
+
     }
 
     fun getResearchs(): LiveData<List<Research>> {

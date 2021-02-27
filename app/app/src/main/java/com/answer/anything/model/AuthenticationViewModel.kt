@@ -67,7 +67,6 @@ class AuthenticationViewModel() : ViewModel() {
     }
 
     fun handleFacebookAccessToken(token: AccessToken, activity: AppCompatActivity) {
-        Log.d(TAG, "handleFacebookAccessToken:$token")
         val credential = FacebookAuthProvider.getCredential(token.token)
         auth.signInWithCredential(credential)
             .addOnCompleteListener(activity) { task ->

@@ -2,6 +2,7 @@ package com.answer.anything.repository
 
 import android.util.Log
 import com.answer.anything.data.Research
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.QuerySnapshot
@@ -35,10 +36,10 @@ class ResearchRepository() {
 
 
     suspend fun read(uid: String) = withContext(Dispatchers.IO) {
-        val response: QuerySnapshot = researchCollection.get().await();
+        /*val response: QuerySnapshot = researchCollection.whereEqualTo("roles.${uid}", "owner").get().await();
         response.documents.map {
             Research.from(it)
-        }
+        }*/
     }
 
     fun update(uid: String, documentId: String, newResearchData: Research) {
@@ -77,7 +78,9 @@ class ResearchRepository() {
     }
 
     fun setSnapShotListener(onSuccess: (researchs: List<Research>?) -> Unit): ListenerRegistration {
+        Log.d(TAG, "UID => ${FirebaseAuth.getInstance().currentUser!!.uid}")
         return researchCollection
+            .whereEqualTo("roles.${FirebaseAuth.getInstance().currentUser!!.uid}", "owner")
             .addSnapshotListener { value, error ->
                 if (error != null) {
                     return@addSnapshotListener
