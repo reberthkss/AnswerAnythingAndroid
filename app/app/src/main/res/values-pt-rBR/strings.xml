@@ -14,4 +14,6 @@
     <string name="none_research_was_found_text">Nenhuma pesquisa encontrada :(</string>
     <string name="researchs_toolbar_label">Pesquisas</string>
     <string name="search_anywhere_msg">Vá para a rua, entreviste as pessoas utilizando teu celular ou compartilhando o QR Code de sua pesquisa</string>
+    <string name="are_you_making_a_market_research">Você precisa descobrir o que seus possíveis clientes acham?</string>
+    <string name="are_your_customers_satisfied">Seus clientes estão satisfeitos?</string>
 </resources>

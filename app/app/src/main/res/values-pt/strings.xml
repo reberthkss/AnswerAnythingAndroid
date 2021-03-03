@@ -13,4 +13,6 @@
     <string name="none_research_was_found_text">Nenhuma pesquisa encontrada :(</string>
     <string name="sign_in_text">Entrar</string>
     <string name="search_anywhere_msg">Vá para a rua, entreviste as pessoas utilizando teu celular ou compartilhando o QR Code de sua pesquisa</string>
+    <string name="are_your_customers_satisfied">Seus clientes estão satisfeitos?\n Descubra o que eles pensam sobre teu trabalho/produto</string>
+    <string name="are_you_making_a_market_research">Você precisa fazer uma pesquisa de mercado?\n Vá direto ao cliente e decubra o que ele pensa</string>
 </resources>

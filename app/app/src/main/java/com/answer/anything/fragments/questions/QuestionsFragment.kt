@@ -18,7 +18,7 @@ class QuestionsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val pagerAdapter = ViewPagerAdapter(this, answerViewModel.getAnsweringResearch().value?.questions)
+        val pagerAdapter = QuestionsViewPager(this, answerViewModel.getAnsweringResearch().value?.questions)
         binding = QuestionsFragmentBinding.inflate(inflater, container, false)
         binding.pager.adapter = pagerAdapter
         return binding.root

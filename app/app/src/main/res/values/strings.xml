@@ -16,4 +16,7 @@
     <string name="input_email_placeholder">E-mail</string>
     <string name="none_research_was_found_text">None research was found :(</string>
     <string name="search_anywhere_msg">Go to the street, interview people using your cell phone or sharing the QR Code of your research</string>
+    <string name="are_your_customers_satisfied">Are your clients satisfied? Discover what your customers think about your job/product</string>
+    <string name="are_you_making_a_market_research">Are you making a market research?\n Go to your target audience and survey them</string>
+
 </resources>
